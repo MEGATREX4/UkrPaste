@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Додати пасту | УкрПаста</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://kit.fontawesome.com/a0ff110df7.js" crossorigin="anonymous"></script>
+
+  <script src="form.js"></script>
+
+</head>
+<body class="bg-gray-900 text-white min-h-screen flex flex-col">
+
+  <!-- Header -->
+  <header class="w-full flex items-center p-4 bg-gray-800 border-b border-gray-700">
+    <h1 class="text-2xl font-bold pr-3">УкрПаста</h1>
+    <div class="flex gap-4">
+      <a href="index" class="bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded-md text-sm flex items-center gap-2">
+        <i class="fas fa-home"></i> Головна
+      </a>
+      <a href="about" class="bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded-md text-sm flex items-center gap-2">
+        <i class="fas fa-info-circle"></i> Про сайт
+      </a>
+      <a href="apply" class="bg-pink-800 hover:bg-pink-600 text-white px-4 py-2 rounded-md text-sm flex items-center gap-2">
+        <i class="fas fa-paper-plane"></i> Додати пасту
+      </a>
+    </div>
+  </header>
+
+  <!-- Main content -->
+  <main class="flex-grow flex flex-col items-center p-6 max-w-xl mx-auto w-full">
+    <h2 class="text-4xl font-bold mb-6 text-center">Додати свою пасту</h2>
+
+    <form method="POST" onsubmit="sendContact(event)" action="accepted" id="pasteForm" class="bg-gray-800 p-6 rounded-md w-full shadow-md flex flex-col gap-4">
+      <div>
+        <label for="author" class="block mb-2">Ваш нікнейм або ім'я:</label>
+        <input type="text" id="authorInput" name="author" class="w-full p-3 rounded bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-pink-600">
+      </div>
+
+      <div>
+        <label for="content" class="block mb-2">Текст пасти:</label>
+        <textarea id="pasteInput" name="content" rows="6" required class="w-full p-3 rounded bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-pink-600"></textarea>
+      </div>
+
+      <button type="submit" class="bg-pink-700 hover:bg-pink-600 text-white px-6 py-3 rounded-md flex items-center gap-2 justify-center">
+        <i class="fas fa-paper-plane"></i> Надіслати пасту
+      </button>
+    </form>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-center text-sm py-4 w-full border-t border-gray-700 mt-auto">
+    <span> Розроблено 
+        <a class="underline decoration-wavy" href="https://megatrex4.netlify.app/">
+            MEGATREX4</a> з 
+        <i class="fas fa-heart text-red-500"></i>
+    </span>
+    у 2025 році
+  </footer>
+</body>
+</html>
