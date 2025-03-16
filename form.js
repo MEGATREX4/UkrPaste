@@ -22,7 +22,7 @@ async function sendContact(ev) {
       const result = await response.json();
   
       if (response.ok) {
-        window.open('accepted');
+        window.location.href = 'accepted';
       } else {
         alert(result.message || 'Помилка, спробуй пізніше!');
       }
