@@ -5,8 +5,8 @@ import json
 with open("input_pastes.txt", "r", encoding="utf-8") as f:
     input_text = f.read()
 
-# Видаляємо всі рядки з назвою бота і часом (наприклад: "УкрПаста•Сьогодні о 21:00")
-input_text = re.sub(r"УкрПаста[^\n]*\n", "", input_text)
+# Видаляємо всі рядки з назвою бота і часом (наприклад: "УкрПаста•Сьогодні о 21:00" та "БОТ — Сьогодні о 21:08")
+input_text = re.sub(r"(УкрПаста[^\n]*\n|БОТ\s*—\s*Сьогодні о \d{2}:\d{2})", "", input_text)
 
 # Розділяємо пасти по маркеру "Нова паста додана!"
 pastes_raw = input_text.split("Нова паста додана!")
@@ -30,5 +30,5 @@ for paste in pastes_raw:
 # Записуємо в JSON
 with open("new_pastes.json", "w", encoding="utf-8") as f:
     json.dump(pastes, f, ensure_ascii=False, indent=4)
-
+    
 print("✅ Пасти успішно очищено та збережено в new_pastes.json та new_pastes.txt")
