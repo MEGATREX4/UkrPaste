@@ -22,7 +22,7 @@ async function sendContact(ev) {
       const result = await response.json();
   
       if (response.ok) {
-        window.open('https://m4sub.netlify.app/accepted.html/');
+        window.open('accepted');
       } else {
         alert(result.message || 'Помилка, спробуй пізніше!');
       }
