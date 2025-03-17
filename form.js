@@ -1,8 +1,17 @@
+window.addEventListener('load', function() {
+  const savedAuthor = localStorage.getItem('author');
+  if (savedAuthor) {
+    document.getElementById('authorInput').value = savedAuthor;
+  }
+});
+
 async function sendContact(ev) {
     ev.preventDefault();
   
     const authorInput = document.getElementById('authorInput').value;
     const pasteInput = document.getElementById('pasteInput').value;
+
+    localStorage.setItem('author', authorInput);
   
     const webhookBody = {
       authorInput: authorInput,
