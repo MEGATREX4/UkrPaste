@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Додати пасту</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://kit.fontawesome.com/a0ff110df7.js" crossorigin="anonymous"></script>
+</head>
+<body class="bg-gray-900 text-white min-h-screen flex flex-col">
+
+  <header class="w-full flex items-center p-4 bg-gray-800 border-b border-gray-700">
+    <h1 class="text-2xl font-bold pr-3">Додати нову пасту</h1>
+    <div class="flex gap-4">
+      <a href="/" class="bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded-md text-sm flex items-center gap-2">
+        <i class="fas fa-home"></i> Головна
+      </a>
+    </div>
+  </header>
+
+  <main class="flex-grow flex flex-col items-center p-6">
+    <h2 class="text-4xl font-bold mb-8">Додати нову пасту</h2>
+    <form id="add-paste-form" class="w-full max-w-md space-y-6">
+      <input type="text" id="author" placeholder="Автор" class="w-full p-3 bg-gray-800 border border-gray-700 rounded-md text-white" required />
+      <textarea id="text" placeholder="Текст пасти" class="w-full p-3 bg-gray-800 border border-gray-700 rounded-md text-white" required rows="6"></textarea>
+      <button type="submit" class="w-full py-3 bg-pink-800 hover:bg-pink-600 text-white rounded-md text-lg">Додати пасту</button>
+    </form>
+  </main>
+
+  <footer class="bg-gray-800 text-center text-sm py-4 w-full border-t border-gray-700">
+    <span> Розроблено 
+        <a class="underline decoration-wavy" href="https://megatrex4.netlify.app/">MEGATREX4</a> з 
+        <i class="fas fa-heart text-red-500"></i>
+    </span>
+    у 2025 році
+  </footer>
+
+  <script>
+    // When the page loads, check if the authorInput is stored in localStorage
+    window.addEventListener('load', function() {
+      const savedAuthor = localStorage.getItem('author');
+      if (savedAuthor) {
+        document.getElementById('authorInput').value = savedAuthor;
+      }
+    });
+  </script>
+  
+
+  <script>
+    document.getElementById('add-paste-form').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const author = document.getElementById('author').value;
+      const text = document.getElementById('text').value;
+
+      localStorage.setItem('author', author);
+      const data = {
+        author: author,
+        text: text
+      };
+
+      fetch('/add_paste', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+      })
+      .then(response => response.json())
+      .then(data => {
+        alert('Паста додана!');
+        window.location.href = '/';  // Redirect to the main page
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        alert('Помилка при додаванні пасти');
+      });
+    });
+  </script>
+</body>
+</html>
