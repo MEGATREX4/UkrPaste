@@ -15,7 +15,7 @@ fetch('pastes.json')
             <i class="p-1 fa-solid fa-clone"></i> Копіювати
           </button>
         </div>
-        <div class="p-4 text-left text-gray-200 whitespace-pre-wrap">${paste.text}</div>
+        <div class="p-4 text-left text-gray-200 whitespace-pre-wrap" style="word-break: break-word;">${paste.text}</div>
       `;
 
       container.appendChild(card);
@@ -27,9 +27,10 @@ fetch('pastes.json')
         navigator.clipboard.writeText(button.getAttribute('data-text')).then(() => {
           button.innerHTML = `<i class="fas fa-check mr-1"></i> Скопійовано!`;
           setTimeout(() => {
-            button.innerHTML = `<i class="p-1 fa-solid fa-clone"></i> Копіювати`;
+            button.innerHTML = `<i class="p-1 fa-solid fa-clone"></i> Копіювати `;
           }, 1500);
         });
       });
     });
   });
+
