@@ -49,6 +49,16 @@
     </form>
   </main>
 
+  <script>
+    // When the page loads, check if the authorInput is stored in localStorage
+    window.addEventListener('load', function() {
+      const savedAuthor = localStorage.getItem('author');
+      if (savedAuthor) {
+        document.getElementById('authorInput').value = savedAuthor;
+      }
+    });
+  </script>
+
   <!-- Footer -->
   <footer class="bg-gray-800 text-center text-sm py-4 w-full border-t border-gray-700 mt-auto">
     <span> Розроблено 
