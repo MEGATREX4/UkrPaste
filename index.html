@@ -6,6 +6,9 @@
   <title>УкрПаста</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://kit.fontawesome.com/a0ff110df7.js" crossorigin="anonymous"></script>
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
 <body class="bg-gray-900 text-white min-h-screen flex flex-col">
 
@@ -29,9 +32,7 @@
   <main class="flex-grow flex flex-col items-center p-6">
     <h2 class="text-4xl font-bold mb-8">Збірник паст</h2>
 
-    <div id="pastes-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-6xl">
-      <!-- Cards will load here -->
-    </div>
+    <div id="root" class="w-full max-w-6xl"></div>
   </main>
 
   <!-- Sticky footer -->
@@ -44,6 +45,6 @@
     у 2025 році
   </footer>
 
-  <script src="script.js"></script>
+  <script type="text/babel" src="app.js"></script>
 </body>
 </html>
