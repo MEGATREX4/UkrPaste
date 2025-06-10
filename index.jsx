@@ -40,8 +40,6 @@ function IndexPage() {
     const matchesAuthors =
       selectedAuthors.length === 0 || selectedAuthors.includes(paste.author);
     return matchesSearch && matchesTags && matchesAuthors;
-=======
-    return matchesSearch && matchesTags;
   });
 
   return (
