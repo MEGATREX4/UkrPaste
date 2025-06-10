@@ -1,6 +1,19 @@
 function AboutPage() {
+  const [randomPaste, setRandomPaste] = React.useState(null);
+
+  React.useEffect(() => {
+    fetch('pastes.json')
+      .then(res => res.json())
+      .then(data => {
+        if (data.length > 0) {
+          const rnd = data[Math.floor(Math.random() * data.length)];
+          setRandomPaste(rnd);
+        }
+      });
+  }, []);
+
   return (
-    <>
+    <div className="flex flex-col min-h-screen">
       <Header />
       <main className="flex-grow flex flex-col items-center p-6 max-w-4xl mx-auto text-center">
         <h2 className="text-4xl font-bold mb-6">Про УкрПасту</h2>
@@ -17,6 +30,13 @@ function AboutPage() {
         <a href="apply" className="bg-pink-700 hover:bg-pink-600 text-white px-6 py-3 rounded-md text-md flex items-center gap-2">
           <i className="fas fa-plus-circle"></i> Додати свою пасту
         </a>
+        {randomPaste && (
+          <div className="bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-md p-4 my-6 text-left w-full">
+            <h3 className="text-xl font-semibold mb-2 text-center">Випадкова паста</h3>
+            <p className="whitespace-pre-wrap mb-2" style={{ wordBreak: 'break-word' }}>{randomPaste.text}</p>
+            <p className="text-sm text-right text-gray-500">— {randomPaste.author}</p>
+          </div>
+        )}
         <br /><br />
         <p>Також можете надіслати пару гривень в благодійний фонд, якому ви довіряєте, адміністрація сайту надає декілька варіантів</p>
         <br />
@@ -40,7 +60,7 @@ function AboutPage() {
         </div>
       </main>
       <Footer />
-    </>
+    </div>
   );
 }
 

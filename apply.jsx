@@ -31,7 +31,7 @@ function ApplyPage() {
   };
 
   return (
-    <>
+    <div className="flex flex-col min-h-screen">
       <Header />
       <main className="flex-grow flex flex-col items-center p-6 max-w-xl mx-auto w-full">
         <h2 className="text-4xl font-bold mb-6 text-center">Додати свою пасту</h2>
@@ -50,7 +50,7 @@ function ApplyPage() {
         </form>
       </main>
       <Footer />
-    </>
+    </div>
   );
 }
 
