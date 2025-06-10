@@ -6,69 +6,14 @@
   <title>Паста прийнята | УкрПаста</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://kit.fontawesome.com/a0ff110df7.js" crossorigin="anonymous"></script>
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
 <body class="bg-gray-900 text-white min-h-screen flex flex-col">
+  <div id="root" class="flex-grow"></div>
 
-  <!-- Header -->
-  <header class="w-full flex items-center p-4 bg-gray-800 border-b border-gray-700">
-    <h1 class="text-2xl font-bold pr-3">УкрПаста</h1>
-    <div class="flex gap-4">
-      <a href="index" class="bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded-md text-sm flex items-center gap-2">
-        <i class="fas fa-home"></i> Головна
-      </a>
-      <a href="about" class="bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded-md text-sm flex items-center gap-2">
-        <i class="fas fa-info-circle"></i> Про
-      </a>
-      <a href="apply" class="bg-pink-800 hover:bg-pink-600 text-white px-4 py-2 rounded-md text-sm flex items-center gap-2">
-        <i class="fas fa-paper-plane"></i> Додати
-      </a>
-    </div>
-  </header>
-
-  <!-- Main content -->
-  <main class="flex-grow flex flex-col items-center justify-center p-6 text-center max-w-xl mx-auto w-full">
-    <i class="fas fa-check-circle text-green-500 text-6xl mb-6"></i>
-    <h2 class="text-3xl font-bold mb-4">Паста прийнята!</h2>
-    <p class="mb-6 text-lg">Ваша паста прийнята на обробку та незабаром зʼявиться на сайті.</p>
-    
-    <div class="flex gap-4">
-      <a href="index" class="bg-gray-700 hover:bg-gray-600 text-white px-6 py-3 rounded-md flex items-center gap-2 justify-center">
-        <i class="fas fa-home"></i> Головна
-      </a>
-      <a href="apply" class="bg-pink-700 hover:bg-pink-600 text-white px-6 py-3 rounded-md flex items-center gap-2 justify-center">
-        <i class="fas fa-plus-circle"></i> Додати ще пасту
-      </a>
-    </div>
-    <br><br>
-    <p>Також можете надіслати пару гривень в благодійний фонд, якому ви довіряєте, адміністрація сайту надає декілька варіантів</p><br>
-    <div class="grid grid-cols-1 pb-6 sm:grid-cols-2 gap-3 max-w-6xl mx-auto">
-      <a href="https://savelife.in.ua" class="bg-gray-800 rounded-lg p-4 flex flex-col items-center justify-between transition duration-300 hover:scale-105 hover:bg-gray-700">
-        <img src="https://savelife.in.ua/wp-content/themes/savelife/assets/images/new-logo-black-ua.svg" alt="Save Life" title="Save Life" class="cba-logo ua h-32 w-32 object-contain" />
-        <p class="text-sm text-center mt-auto">Повернись живим</p>
-      </a>
-      <a href="https://prytulafoundation.org/" class="bg-gray-800 rounded-lg p-4 flex flex-col items-center justify-between transition duration-300 hover:scale-105 hover:bg-gray-700">
-        <img data-v-293b82a2="" src="https://ds7zgdsyui79p.cloudfront.net/logonew_f2314490c6.svg" alt=" Сергій Притула фонд" title=" Сергій Притула фонд" class="h-32 w-32 object-contain" />
-        <p class="text-sm text-center mt-auto">Фонд Сергія Притули</p>
-      </a>
-      <a href="https://www.sternenkofund.org/" class="bg-gray-800 rounded-lg p-4 flex flex-col items-center justify-between transition duration-300 hover:scale-105 hover:bg-gray-700">
-        <img src="https://cdn.prod.website-files.com/6797b46110ec22b94bac2ef8/6797f9d57664bf21b2f2b300_SSF%20Drone%20Icon%20White.svg" loading="lazy" alt="Drone Army" title="Drone Army" class="h-32 w-32 object-contain" />
-        <p class="text-sm text-center mt-auto">Спільнота Стерненка</p>
-      </a>
-      <a href="https://united24.gov.ua" class="bg-gray-800 rounded-lg p-4 flex flex-col items-center justify-between transition duration-300 hover:scale-105 hover:bg-gray-700">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/UNITED24_logo.svg" loading="lazy" alt="United24" title="United24" class="h-32 w-32 object-contain" style="filter: invert(100%);" />
-        <p class="text-sm text-center mt-auto">United24</p>
-      </a>
-    </div>
-  </main>
-
-  <!-- Footer -->
-  <footer class="bg-gray-800 text-center text-sm py-4 w-full border-t border-gray-700 mt-auto">
-    <span> Розроблено 
-        <a class="underline decoration-wavy" href="https://megatrex4.netlify.app/">
-            MEGATREX4</a> з 
-        <i class="fas fa-heart text-red-500"></i>
-    </span>
-    у 2025 році
-  </footer>
+  <script type="text/babel" src="components.jsx"></script>
+  <script type="text/babel" src="accepted.jsx"></script>
 </body>
 </html>
