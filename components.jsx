@@ -41,10 +41,10 @@ function Header() {
 const Footer = () => (
   <footer className="bg-gray-800 text-center text-sm py-4 w-full border-t border-gray-700 mt-auto">
     <span>
-      Розроблено
-      <a className="underline decoration-wavy" href="https://megatrex4.netlify.app/">MEGATREX4</a>
-      з <i className="fas fa-heart text-red-500"></i>
-    </span>
-    у 2025 році
+      Розроблено 
+      <a className="underline decoration-wavy" href="https://megatrex4.netlify.app/"> MEGATREX4 </a>
+      з <i className="fas fa-heart text-red-500"></i> 
+    </span> 
+     у 2025 році
   </footer>
 );
