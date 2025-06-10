@@ -68,15 +68,13 @@ function IndexPage() {
                 <p className="font-semibold mb-2">Теги:</p>
                 <div className="flex flex-wrap gap-2">
                   {uniqueTags.map(tag => (
-                    <label key={tag} className="flex items-center gap-1 text-sm">
-                      <input
-                        type="checkbox"
-                        className="accent-pink-600"
-                        checked={selectedTags.includes(tag)}
-                        onChange={() => handleTagToggle(tag)}
-                      />
+                    <button
+                      key={tag}
+                      onClick={() => handleTagToggle(tag)}
+                      className={`px-3 py-1 rounded-md border text-sm transition cursor-pointer select-none focus:outline-none ${selectedTags.includes(tag) ? 'bg-pink-600 text-white border-pink-700' : 'bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 border-gray-300 dark:border-gray-600 hover:bg-gray-300 dark:hover:bg-gray-600'}`}
+                    >
                       {tag}
-                    </label>
+                    </button>
                   ))}
                 </div>
               </div>
@@ -84,15 +82,13 @@ function IndexPage() {
                 <p className="font-semibold mb-2">Автори:</p>
                 <div className="flex flex-wrap gap-2">
                   {uniqueAuthors.map(author => (
-                    <label key={author} className="flex items-center gap-1 text-sm">
-                      <input
-                        type="checkbox"
-                        className="accent-pink-600"
-                        checked={selectedAuthors.includes(author)}
-                        onChange={() => handleAuthorToggle(author)}
-                      />
+                    <button
+                      key={author}
+                      onClick={() => handleAuthorToggle(author)}
+                      className={`px-3 py-1 rounded-md border text-sm transition cursor-pointer select-none focus:outline-none ${selectedAuthors.includes(author) ? 'bg-pink-600 text-white border-pink-700' : 'bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 border-gray-300 dark:border-gray-600 hover:bg-gray-300 dark:hover:bg-gray-600'}`}
+                    >
                       {author}
-                    </label>
+                    </button>
                   ))}
                 </div>
               </div>
