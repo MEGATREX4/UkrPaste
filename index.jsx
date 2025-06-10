@@ -6,6 +6,13 @@ function IndexPage() {
   const [selectedTags, setSelectedTags] = useState([]);
   const [selectedAuthors, setSelectedAuthors] = useState([]);
   const [filtersOpen, setFiltersOpen] = useState(false);
+  const [favorites, setFavorites] = useState(() => {
+    try {
+      return JSON.parse(localStorage.getItem('favorites')) || [];
+    } catch {
+      return [];
+    }
+  });
 
   useEffect(() => {
     fetch('pastes.json')
@@ -31,6 +38,36 @@ function IndexPage() {
     );
   };
 
+  const handleCopy = text => {
+    navigator.clipboard.writeText(text);
+    const history = JSON.parse(localStorage.getItem('copyHistory') || '[]');
+    history.unshift(text);
+    if (history.length > 10) history.pop();
+    localStorage.setItem('copyHistory', JSON.stringify(history));
+  };
+
+  const toggleFavorite = paste => {
+    setFavorites(prev => {
+      const exists = prev.some(
+        p => p.text === paste.text && p.author === paste.author
+      );
+      let updated;
+      if (exists) {
+        updated = prev.filter(
+          p => !(p.text === paste.text && p.author === paste.author)
+        );
+      } else {
+        updated = [paste, ...prev];
+      }
+      localStorage.setItem('favorites', JSON.stringify(updated));
+      return updated;
+    });
+  };
+
+  useEffect(() => {
+    localStorage.setItem('favorites', JSON.stringify(favorites));
+  }, [favorites]);
+
   const filtered = pastes.filter(paste => {
     const matchesSearch =
       paste.text.toLowerCase().includes(search.toLowerCase()) ||
@@ -46,7 +83,8 @@ function IndexPage() {
     <div className="flex flex-col min-h-screen">
       <Header />
       <main className="flex-grow flex flex-col items-center p-6">
-        <h2 className="text-4xl font-bold mb-8">Збірник паст</h2>
+        <h2 className="text-4xl font-bold mb-2">Збірник паст</h2>
+        <p className="mb-6 text-sm text-gray-600 dark:text-gray-400">Всього паст: {pastes.length}</p>
         <div className="mb-4 w-full max-w-6xl flex flex-col gap-2">
           <div className="flex gap-2">
             <input
@@ -96,23 +134,36 @@ function IndexPage() {
           )}
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-6xl">
-          {filtered.map((paste, idx) => (
-            <div key={idx} className="bg-white dark:bg-gray-800 rounded-lg border border-gray-300 dark:border-gray-700 shadow-lg flex flex-col">
-              <div className="flex justify-between items-center bg-gray-200 dark:bg-gray-700 p-3 rounded-t-lg">
-                <span className="font-semibold">{paste.author}</span>
-                <button
-                  className="flex items-center text-sm text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white"
-
-                  onClick={() => navigator.clipboard.writeText(paste.text)}
-                >
-                  <i className="p-1 fa-solid fa-clone"></i> Копіювати
-                </button>
+          {filtered.map((paste, idx) => {
+            const fav = favorites.some(
+              p => p.text === paste.text && p.author === paste.author
+            );
+            return (
+              <div key={idx} className="bg-white dark:bg-gray-800 rounded-lg border border-gray-300 dark:border-gray-700 shadow-lg flex flex-col">
+                <div className="flex justify-between items-center bg-gray-200 dark:bg-gray-700 p-3 rounded-t-lg">
+                  <span className="font-semibold">{paste.author}</span>
+                  <div className="flex gap-2">
+                    <button
+                      className="flex items-center text-sm text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white"
+                      onClick={() => handleCopy(paste.text)}
+                    >
+                      <i className="p-1 fa-solid fa-clone"></i> Копіювати
+                    </button>
+                    <button
+                      className={`text-sm ${fav ? 'text-pink-600' : 'text-gray-600 dark:text-gray-300'} hover:text-pink-700`}
+                      title="Додати до улюблених"
+                      onClick={() => toggleFavorite(paste)}
+                    >
+                      <i className={fav ? 'fas fa-heart' : 'far fa-heart'}></i>
+                    </button>
+                  </div>
+                </div>
+                <div className="p-4 text-left text-gray-900 dark:text-gray-200 whitespace-pre-wrap" style={{ wordBreak: 'break-word' }}>
+                  {paste.text}
+                </div>
               </div>
-              <div className="p-4 text-left text-gray-900 dark:text-gray-200 whitespace-pre-wrap" style={{ wordBreak: 'break-word' }}>
-                {paste.text}
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </main>
       <Footer />

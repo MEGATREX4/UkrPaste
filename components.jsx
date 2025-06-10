@@ -14,7 +14,7 @@ function Header() {
   const toggleTheme = () => setTheme(t => (t === 'dark' ? 'light' : 'dark'));
 
   return (
-    <header className="w-full p-4 bg-gray-800 border-b border-gray-700">
+    <header className="w-full p-4 bg-white dark:bg-gray-800 border-b border-gray-300 dark:border-gray-700 text-black dark:text-white">
       <div className="flex flex-col sm:flex-row sm:items-center">
         <h1 className="text-2xl font-bold mb-3 sm:mb-0 sm:pr-3 text-center sm:text-left w-full sm:w-auto">
           УкрПаста
@@ -28,6 +28,12 @@ function Header() {
           </a>
           <a href="apply" className="bg-pink-800 hover:bg-pink-600 text-white px-4 py-2 rounded-md text-sm flex items-center gap-2">
             <i className="fas fa-paper-plane"></i> Додати
+          </a>
+          <a href="history" className="bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded-md text-sm flex items-center gap-2">
+            <i className="fas fa-clock-rotate-left"></i> Історія
+          </a>
+          <a href="favorites" className="bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded-md text-sm flex items-center gap-2">
+            <i className="fas fa-heart"></i> Улюблені
           </a>
           <button
             onClick={toggleTheme}
@@ -43,7 +49,7 @@ function Header() {
 }
 
 const Footer = () => (
-  <footer className="bg-gray-800 text-center text-sm py-4 w-full border-t border-gray-700 mt-auto">
+  <footer className="bg-white dark:bg-gray-800 text-black dark:text-white text-center text-sm py-4 w-full border-t border-gray-300 dark:border-gray-700 mt-auto">
     <span>
       Розроблено&nbsp;
       <a className="underline decoration-wavy" href="https://megatrex4.netlify.app/">MEGATREX4</a>
