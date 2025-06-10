@@ -22,6 +22,7 @@ function IndexPage() {
     );
   };
 
+
   const handleAuthorToggle = author => {
     setSelectedAuthors(prev =>
       prev.includes(author)
@@ -39,6 +40,8 @@ function IndexPage() {
     const matchesAuthors =
       selectedAuthors.length === 0 || selectedAuthors.includes(paste.author);
     return matchesSearch && matchesTags && matchesAuthors;
+=======
+    return matchesSearch && matchesTags;
   });
 
   return (
@@ -105,6 +108,7 @@ function IndexPage() {
                 <span className="font-semibold">{paste.author}</span>
                 <button
                   className="flex items-center text-sm text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white"
+
                   onClick={() => navigator.clipboard.writeText(paste.text)}
                 >
                   <i className="p-1 fa-solid fa-clone"></i> Копіювати
