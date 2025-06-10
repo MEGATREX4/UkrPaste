@@ -43,7 +43,7 @@ function IndexPage() {
   });
 
   return (
-    <>
+    <div className="flex flex-col min-h-screen">
       <Header />
       <main className="flex-grow flex flex-col items-center p-6">
         <h2 className="text-4xl font-bold mb-8">Збірник паст</h2>
@@ -116,7 +116,7 @@ function IndexPage() {
         </div>
       </main>
       <Footer />
-    </>
+    </div>
   );
 }
 

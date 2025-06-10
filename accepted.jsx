@@ -1,6 +1,6 @@
 function AcceptedPage() {
   return (
-    <>
+    <div className="flex flex-col min-h-screen">
       <Header />
       <main className="flex-grow flex flex-col items-center justify-center p-6 text-center max-w-xl mx-auto w-full">
         <i className="fas fa-check-circle text-green-500 text-6xl mb-6"></i>
@@ -38,7 +38,7 @@ function AcceptedPage() {
         </div>
       </main>
       <Footer />
-    </>
+    </div>
   );
 }
 
