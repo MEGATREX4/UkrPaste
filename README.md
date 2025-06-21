@@ -46,3 +46,18 @@ The site exposes a small API powered by Netlify Functions. You can fetch pastes 
 
 Add `textonly=1` to any request above to return just the text instead of the full object.
 
+### Використання зі StreamElements
+
+Щоб показати випадкову пасту у чаті через StreamElements, можна створити команду:
+
+```text
+!cmd add !randpaste ${customapi.https://ukrpaste.netlify.app/.netlify/functions/api?random=1&textonly=1}
+```
+
+Запит поверне JSON на зразок:
+
+```json
+{"text":"..."}
+```
+
+StreamElements вставить текст із поля `text` у повідомлення.
