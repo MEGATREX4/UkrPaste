@@ -1,9 +1,6 @@
-const fs = require('fs');
-const path = require('path');
+const pastes = require('../../pastes.json');
 
 exports.handler = async function(event) {
-  const filePath = path.join(__dirname, 'pastes.json');
-  const pastes = JSON.parse(fs.readFileSync(filePath, 'utf8'));
   const params = event.queryStringParameters || {};
   const textOnly = params.textonly !== undefined;
 
