@@ -46,6 +46,18 @@ function IndexPage() {
     localStorage.setItem('copyHistory', JSON.stringify(history));
   };
 
+  const sharePaste = (id, paste) => {
+    const url = `${window.location.origin}/paste.html#${id}`;
+    if (navigator.share) {
+      navigator
+        .share({ title: 'УкрПаста', text: paste.text, url })
+        .catch(() => {});
+    } else {
+      navigator.clipboard.writeText(url);
+      alert('Посилання скопійовано!');
+    }
+  };
+
   const toggleFavorite = paste => {
     setFavorites(prev => {
       const exists = prev.some(
@@ -147,7 +159,13 @@ function IndexPage() {
                       className="flex items-center text-sm text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white"
                       onClick={() => handleCopy(paste.text)}
                     >
-                      <i className="p-1 fa-solid fa-clone"></i> Копіювати
+                      <i className="p-1 fa-solid fa-clone"></i>
+                    </button>
+                    <button
+                      className="flex items-center text-sm text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white"
+                      onClick={() => sharePaste(idx, paste)}
+                    >
+                      <i className="p-1 fa-solid fa-share-nodes"></i>
                     </button>
                     <button
                       className={`text-sm ${fav ? 'text-pink-600' : 'text-gray-600 dark:text-gray-300'} hover:text-pink-700`}
