@@ -5,14 +5,17 @@ exports.handler = async function(event) {
   const filePath = path.join(__dirname, 'pastes.json');
   const pastes = JSON.parse(fs.readFileSync(filePath, 'utf8'));
   const params = event.queryStringParameters || {};
+  const textOnly = params.textonly !== undefined;
 
   if (params.id !== undefined) {
     const index = parseInt(params.id, 10);
     if (!isNaN(index) && index >= 0 && index < pastes.length) {
+      const paste = pastes[index];
+      const body = textOnly ? { text: paste.text } : paste;
       return {
         statusCode: 200,
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(pastes[index]),
+        body: JSON.stringify(body),
       };
     }
     return {
@@ -38,16 +41,18 @@ exports.handler = async function(event) {
       };
     }
     const random = list[Math.floor(Math.random() * list.length)];
+    const body = textOnly ? { text: random.text } : random;
     return {
       statusCode: 200,
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(random),
+      body: JSON.stringify(body),
     };
   }
 
+  const result = textOnly ? list.map((p) => p.text) : list;
   return {
     statusCode: 200,
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(list),
+    body: JSON.stringify(result),
   };
 };

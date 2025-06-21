@@ -42,4 +42,7 @@ The site exposes a small API powered by Netlify Functions. You can fetch pastes 
 - `/.netlify/functions/api?random=1` – return a random paste.
 - `/.netlify/functions/api?tag=Вибачення` – return all pastes with a tag.
 - `/.netlify/functions/api?tag=Вибачення&random=1` – random paste from that tag.
+- `/.netlify/functions/api?random=1&textonly=1` – just the text of a random paste.
+
+Add `textonly=1` to any request above to return just the text instead of the full object.
 
