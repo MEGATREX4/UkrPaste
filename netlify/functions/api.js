@@ -3,12 +3,26 @@ const pastes = require('../../pastes.json');
 exports.handler = async function(event) {
   const params = event.queryStringParameters || {};
   const textOnly = params.textonly !== undefined;
+  const plain = params.plain !== undefined;
+  const max = params.max !== undefined ? parseInt(params.max, 10) : null;
+
+  const limitText = (text) => {
+    if (max !== null && !isNaN(max) && max > 0) {
+      return text.slice(0, max);
+    }
+    return text;
+  };
 
   if (params.id !== undefined) {
     const index = parseInt(params.id, 10);
     if (!isNaN(index) && index >= 0 && index < pastes.length) {
       const paste = pastes[index];
-      const body = textOnly ? { text: paste.text } : paste;
+      const text = limitText(paste.text);
+      const body = textOnly
+        ? plain
+          ? text
+          : { text }
+        : { ...paste, text };
       return {
         statusCode: 200,
         headers: { 'Content-Type': 'application/json' },
@@ -38,7 +52,12 @@ exports.handler = async function(event) {
       };
     }
     const random = list[Math.floor(Math.random() * list.length)];
-    const body = textOnly ? { text: random.text } : random;
+    const text = limitText(random.text);
+    const body = textOnly
+      ? plain
+        ? text
+        : { text }
+      : { ...random, text };
     return {
       statusCode: 200,
       headers: { 'Content-Type': 'application/json' },
@@ -46,7 +65,11 @@ exports.handler = async function(event) {
     };
   }
 
-  const result = textOnly ? list.map((p) => p.text) : list;
+  const result = textOnly
+    ? plain
+      ? list.map((p) => limitText(p.text))
+      : list.map((p) => ({ text: limitText(p.text) }))
+    : list.map((p) => ({ ...p, text: limitText(p.text) }));
   return {
     statusCode: 200,
     headers: { 'Content-Type': 'application/json' },

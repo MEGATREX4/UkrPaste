@@ -43,21 +43,23 @@ The site exposes a small API powered by Netlify Functions. You can fetch pastes 
 - `/.netlify/functions/api?tag=Вибачення` – return all pastes with a tag.
 - `/.netlify/functions/api?tag=Вибачення&random=1` – random paste from that tag.
 - `/.netlify/functions/api?random=1&textonly=1` – just the text of a random paste.
+- `/.netlify/functions/api?random=1&textonly=1&plain=1` – plain text without JSON.
+- `/.netlify/functions/api?random=1&max=500` – limit text to 500 characters.
 
-Add `textonly=1` to any request above to return just the text instead of the full object.
+Add `textonly=1` to return only the text in JSON. Use `plain=1` together with `textonly=1` to get raw text without the `{"text":...}` wrapper. You can also pass `max=<number>` to truncate the returned text to a specific length.
 
 ### Використання зі StreamElements
 
 Щоб показати випадкову пасту у чаті через StreamElements, можна створити команду:
 
 ```text
-!cmd add !randpaste ${customapi.https://ukrpaste.netlify.app/.netlify/functions/api?random=1&textonly=1}
+!cmd add !randpaste ${customapi.https://ukrpaste.netlify.app/.netlify/functions/api?random=1&textonly=1&plain=1&max=500}
 ```
 
-Запит поверне JSON на зразок:
+Запит поверне текст на зразок:
 
-```json
-{"text":"..."}
+```text
+...
 ```
 
-StreamElements вставить текст із поля `text` у повідомлення.
+StreamElements вставить отриманий текст у повідомлення.
