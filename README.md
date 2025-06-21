@@ -1,0 +1,35 @@
+# UkrPaste
+
+UkrPaste is a collection of funny Ukrainian Twitch pastes hosted as a static site on Netlify.
+
+The site itself is completely static and all dynamic logic runs in the browser. Netlify Functions are used only to forward submissions to a Discord webhook.
+
+## Local development
+
+1. Install dependencies (only used for the development server):
+   ```bash
+   npm install
+   ```
+2. Start a local server:
+   ```bash
+   npm start
+   ```
+   This serves the project on `http://localhost:3000` using the `serve` package.
+
+### Python helpers
+
+`app.py` and `handler.py` are small scripts used locally to maintain `pastes.json`:
+
+- **handler.py** parses `input_pastes.txt` and saves cleaned pastes to `new_pastes.json`.
+- **app.py** provides a tiny Flask interface for previewing `pastes.json` and adding new entries.
+
+These utilities are not used on Netlify but can speed up manual updates of the JSON files.
+
+## Sharing pastes
+
+Every paste has its own link accessible via the new Share button. It opens `paste.html` with the paste index in the hash (e.g. `paste.html#5`). You can copy or share this link directly.
+
+## Environment variables
+
+The Netlify function in `netlify/functions/form.js` expects a `WEBHOOK_URL` environment variable with a Discord webhook address.
+
