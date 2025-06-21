@@ -159,13 +159,13 @@ function IndexPage() {
                       className="flex items-center text-sm text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white"
                       onClick={() => handleCopy(paste.text)}
                     >
-                      <i className="p-1 fa-solid fa-clone"></i> Копіювати
+                      <i className="p-1 fa-solid fa-clone"></i>
                     </button>
                     <button
                       className="flex items-center text-sm text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white"
                       onClick={() => sharePaste(idx, paste)}
                     >
-                      <i className="p-1 fa-solid fa-share-nodes"></i> Поділитись
+                      <i className="p-1 fa-solid fa-share-nodes"></i>
                     </button>
                     <button
                       className={`text-sm ${fav ? 'text-pink-600' : 'text-gray-600 dark:text-gray-300'} hover:text-pink-700`}
