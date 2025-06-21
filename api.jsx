@@ -29,7 +29,7 @@ curl "https://ukrpaste.netlify.app/.netlify/functions/api?tag=\u0412\u0438\u0431
             !cmd add !паста $&#123;customapi.https://ukrpaste.netlify.app/.netlify/functions/api?random=1&textonly=1&#125;
         </pre>
 
-        <p className="text-sm text-gray-500">This is our things Running in 6856c58dd9f4aa0008ee7c31. Endpoint: https://ukrpaste.netlify.app/.netlify/functions/api</p>
+        <p className="text-sm text-gray-500">Endpoint: https://ukrpaste.netlify.app/.netlify/functions/api</p>
         <p className="text-sm text-gray-500">Індекси відповідають порядку у <code>pastes.json</code>.</p>
       </main>
       <Footer />
