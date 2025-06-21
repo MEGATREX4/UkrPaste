@@ -43,6 +43,9 @@ function Header() {
       <a href="favorites" className="bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded-md text-sm flex items-center gap-2">
         <i className="fas fa-heart"></i> Улюблені
       </a>
+      <a href="api" className="bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded-md text-sm flex items-center gap-2">
+        <i className="fas fa-code"></i> API
+      </a>
       <button
         onClick={toggleTheme}
         className="w-[35px] h-[35px] bg-gray-700 hover:bg-gray-600 text-white p-2 rounded-md text-sm"
