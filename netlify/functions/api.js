@@ -5,6 +5,7 @@ exports.handler = async function(event) {
   const textOnly = params.textonly !== undefined;
   const plain = params.plain !== undefined;
   const max = params.max !== undefined ? parseInt(params.max, 10) : null;
+  const removeNewlines = params.nonl !== undefined;
 
   const limitText = (text) => {
     if (max !== null && !isNaN(max) && max > 0) {
@@ -13,11 +14,19 @@ exports.handler = async function(event) {
     return text;
   };
 
+  const formatText = (text) => {
+    let result = limitText(text);
+    if (removeNewlines) {
+      result = result.replace(/\n/g, ' ');
+    }
+    return result;
+  };
+
   if (params.id !== undefined) {
     const index = parseInt(params.id, 10);
     if (!isNaN(index) && index >= 0 && index < pastes.length) {
       const paste = pastes[index];
-      const text = limitText(paste.text);
+      const text = formatText(paste.text);
       const body = textOnly
         ? plain
           ? text
@@ -52,7 +61,7 @@ exports.handler = async function(event) {
       };
     }
     const random = list[Math.floor(Math.random() * list.length)];
-    const text = limitText(random.text);
+    const text = formatText(random.text);
     const body = textOnly
       ? plain
         ? text
@@ -67,9 +76,9 @@ exports.handler = async function(event) {
 
   const result = textOnly
     ? plain
-      ? list.map((p) => limitText(p.text))
-      : list.map((p) => ({ text: limitText(p.text) }))
-    : list.map((p) => ({ ...p, text: limitText(p.text) }));
+      ? list.map((p) => formatText(p.text))
+      : list.map((p) => ({ text: formatText(p.text) }))
+    : list.map((p) => ({ ...p, text: formatText(p.text) }));
   return {
     statusCode: 200,
     headers: { 'Content-Type': 'application/json' },

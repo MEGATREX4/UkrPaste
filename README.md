@@ -45,8 +45,9 @@ The site exposes a small API powered by Netlify Functions. You can fetch pastes 
 - `/.netlify/functions/api?random=1&textonly=1` – just the text of a random paste.
 - `/.netlify/functions/api?random=1&textonly=1&plain=1` – plain text without JSON.
 - `/.netlify/functions/api?random=1&max=500` – limit text to 500 characters.
+- `/.netlify/functions/api?random=1&nonl=1` – replace newlines with spaces.
 
-Add `textonly=1` to return only the text in JSON. Use `plain=1` together with `textonly=1` to get raw text without the `{"text":...}` wrapper. You can also pass `max=<number>` to truncate the returned text to a specific length.
+Add `textonly=1` to return only the text in JSON. Use `plain=1` together with `textonly=1` to get raw text without the `{"text":...}` wrapper. You can also pass `max=<number>` to truncate the returned text to a specific length. Set `nonl=1` to strip line breaks and replace them with spaces (useful for Twitch chats).
 
 ### Використання зі StreamElements
 

@@ -14,6 +14,7 @@ function APIPage() {
           <li><code>/.netlify/functions/api?random=1&textonly=1</code> — тільки текст випадкової пасти</li>
           <li><code>/.netlify/functions/api?random=1&textonly=1&plain=1</code> — повернути лише сам текст</li>
           <li><code>/.netlify/functions/api?random=1&max=500</code> — обрізати текст до 500 символів</li>
+          <li><code>/.netlify/functions/api?random=1&nonl=1</code> — замінити перенос рядка на пробіл</li>
         </ul>
         <h3 className="text-2xl font-semibold mb-2">Приклади</h3>
         <pre className="bg-gray-800 text-green-400 p-4 rounded mb-2 whitespace-pre-wrap">
@@ -21,6 +22,9 @@ curl https://ukrpaste.netlify.app/.netlify/functions/api?random=1
         </pre>
         <pre className="bg-gray-800 text-green-400 p-4 rounded mb-2 whitespace-pre-wrap">
 curl https://ukrpaste.netlify.app/.netlify/functions/api?random=1&textonly=1&plain=1&max=500
+        </pre>
+        <pre className="bg-gray-800 text-green-400 p-4 rounded mb-2 whitespace-pre-wrap">
+curl https://ukrpaste.netlify.app/.netlify/functions/api?random=1&nonl=1
         </pre>
         <pre className="bg-gray-800 text-green-400 p-4 rounded mb-4 whitespace-pre-wrap">
 curl "https://ukrpaste.netlify.app/.netlify/functions/api?tag=\u0412\u0438\u0431\u0430\u0447\u0435\u043d\u043d\u044f"
